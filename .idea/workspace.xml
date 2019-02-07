@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e83f0ced-646a-4905-aa56-a3277c79c173" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/markdown-navigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/markdown-navigator/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/打造扛得住的MySQL数据库架构.md" beforeDir="false" afterPath="$PROJECT_DIR$/打造扛得住的MySQL数据库架构.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,8 +17,8 @@
         <entry file="file://$PROJECT_DIR$/打造扛得住的MySQL数据库架构.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="403">
-                <caret line="998" column="14" selection-start-line="998" selection-start-column="14" selection-end-line="998" selection-end-column="14" />
+              <first_editor relative-caret-position="315">
+                <caret line="1100" column="42" selection-start-line="1100" selection-start-column="42" selection-end-line="1100" selection-end-column="42" />
               </first_editor>
               <second_editor>
                 <markdownNavigatorState />
@@ -47,7 +46,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-20" />
     <option name="y" value="-27" />
     <option name="width" value="1346" />
@@ -102,12 +101,12 @@
       <option name="presentableId" value="Default" />
       <updated>1549505806381</updated>
       <workItem from="1549505808032" duration="6466000" />
-      <workItem from="1549513323253" duration="4407000" />
+      <workItem from="1549513323253" duration="10508000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10873000" />
+    <option name="totallyTimeSpent" value="16974000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -141,8 +140,8 @@
     <entry file="file://$PROJECT_DIR$/打造扛得住的MySQL数据库架构.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="403">
-            <caret line="998" column="14" selection-start-line="998" selection-start-column="14" selection-end-line="998" selection-end-column="14" />
+          <first_editor relative-caret-position="315">
+            <caret line="1100" column="42" selection-start-line="1100" selection-start-column="42" selection-end-line="1100" selection-end-column="42" />
           </first_editor>
           <second_editor>
             <markdownNavigatorState />
