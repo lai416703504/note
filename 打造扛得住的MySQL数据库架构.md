@@ -1100,7 +1100,193 @@ time类型用于存储时间数据，格式为HH:MM:SS
     + analyze table table_name
     + optimize table table_name //会锁表要小心使用
     
-        
+## 第七章 SQL查询优化
+### 7-1获取有性能问题的SQL的三种方法
+>查询优化，索引优化，库表结构优化需要齐头并进。
+
++ 通过用户反馈获取存在性能问题的SQL（比较被动）
++ 通过慢查日志获取存在性能问题的SQL
++ 实时获取存在性能问题的SQL
+
+### 7-2 慢查询日志介绍
+
+#### 主要开销
++ 磁盘IO
+    + 顺序写入的，对大部分情况来说可以忽略不计
++ 存储日志所需要的磁盘空间 
+    + 主要要考虑存储日志所需要的大量的磁盘空间
+    
+#### 语句
++ slow_query_log 启动停止记录慢查日志 
+    + ON为开启 
+    + set global
+    + 可以通过脚本定时开关参数
++ slow_query_log_file 制定慢查日志的存储路径及文件
+    + 默认情况下保存在MySQL的数据目录中
+    + 日志存储和数据存储分开存储
++ long_query_time 制定记录慢查日志SQL执行时间的伐值
+    + 默认值为10秒，最低到微秒，如果是100微秒 则要表达为 0.0001
+    + 一般设置为0.001秒 ，一毫秒比较合适
++ log_queries_not_using_indexes 是否记录未使用索引的SQL
+
+#### MySQL 慢查询日志分析工具
++ 常用的慢查日志分析工具(mysqldumpslow)
+    + 汇总除查询条件外其他完全相同的SQL，
+    + 并将分析结果按照参数中说指定的顺序输出。
++ mysqldumpslow -s r -t 10 slow-mysql.log
++ -s order (c,t,l,r,at,al,ar) 指定按哪种排序方式输出结果
+    + c:总次数
+    + t:总时间
+    + l:锁的时间
+    + r:总数据行
+    + at,al,ar:t,l,r平均数
+        + at = 总时间/总次数
+        + al = 总时间/锁时间
+        + ar = 总时间/数据行
++ -t top 制定取前几条作为结束输出
+
+### 7-3 慢查询日志实例
++ 使用慢查询日志获取有性能问题的SQL
++ 常用的慢查日志分析工具(pt-query-digest)
+    + pt-query-digest --explain h=127.0.0.1,u=root,p=p@ssW0rd slow-mysql.log
+    
+### 7-4 实时获取性能问题SQL
+#### 如何实时获取有性能问题的SQL
+
++ information_schema数据库->PROCESSLIST表
+    ```sql
+    SELECT `id`,`user`,`host`,`DB`,`command`,`time`,`state`,`info` FROM information_schema.PROCESSLIST WHERE TIME>=60
+    ```
+### 7-5 SQL的解析预处理及生成执行计划
+#### 查询速度为什么会慢
+
+##### MySQL服务器处理查询请求的整个过程
++ 客户端发送SQL请求给服务器
++ 服务器检查是否可以在查询缓存中命中该SQL
++ 服务器端进行SQL解析，预处理，再由优化器生成对于的执行计划
++ 根据执行计划，调用存储引擎API来查询数据
++ 将结果返回给客户端
+
+####
++ 优先检查这个查询是否命中查询缓存中的数据。 
++ 通过一个对大小写敏感的哈希值查找实现的。
++ Hash查找只能进行全值匹配。
++ 用户权限
++ 从查询缓存中直接返回结果并不容易
++ 对于一个读写频繁的系统使用查询珲春很可能会降低查询处理的效率
++ 所以在这种情况下建议大家不要使用查询缓存
+    + query_cache_type 设置查询缓存是否可用
+        + ON,OFF,DEMAND
+        + DEMAND表示只有在查询语句中使用SQL_CACHE和SQL_NO_CACAHE来控制是否需要缓存
+        + 建议设置OFF
+    + query_cache_size 设置查询缓存的内存大小
+        + 建议设置0
+    + query_cache_limit 设置查询缓存可用存储的最大值
+        + 加上SQL_NO_CACHE可用提高效率
+    + query_cache_wlock_invalidate 设置数据表被锁后是否返回缓存中的数据
+    + query_cache_min_res_unit 设置查询缓存分配的内存块最小单位
+
++ MySQL依照这个执行计划和存储引擎进行交互
+    + 这个阶段包括了多个子过程:
+        > 解析SQL，预处理，优化SQL执行计划
+        >
+        > 语法解析阶段是通过关键字对MySQL语句进行解析，并生产一棵对应的“解析树”
+        >
+        > MySQL解析器将使用MySQL语法规则验证和解析查询
+        + 包括检查语法是否使用了正确的关键字
+        + 关键字的顺序是否正确等
+        + 预处理阶段是根据MySQL规则进一步检查解析树是否合法
+        + 检查查询中所涉及的表和数据列是否存在及名字或别名 是否存在歧义等等
+        + 语法检查全都通过了，查询优化器就可以生成查询计划了
+
+#### 会造成MySQL生成错误的执行计划的原因
++ 统计信息不正确
++ 执行计划中的成本估算不等同于实际的执行计划的成本。
+    + MySQL服务器层并不知道哪些页面在内存中
+    + 哪些页面在磁盘上
+    + 哪些需要顺序读取
+    + 哪些要页面要随机读取
++ MySQL优化器锁认为的最优可能与你所认为的最优不一样
+    + 基于其成本模型选择最优的执行计划并不是最快的执行计划
++ MySQL从不考虑其他并发的查询，这可能会影响当前的查询速度
++ MySQL有时候也会基于一些固定的规则来生成执行计划
++ MySQL不会考虑不受其控制的成本
+    + 存储过程
+    + 用户自定义函数
+
+#### MySQL优化器可优化的SQL类型
++ 重新定义表的关联顺序
+    + 优化器会根据统计信息来决定表的关联顺序
++ 将外连接转化成内连接(优化器自动转化的)
++ 使用等价变换规则
++ 优化count(),min()和max()
++ 将一个表达式转化为常数表达式
++ 使用等价变换规则
++ 子查询优化
+    + 转化为关联查询
++ 提前终止查询
++ 对in条件进行优化
+
+### 7-6 如何确定查询处理各个阶段所消耗的时间
+
+#### 使用profile
++ set profiling = 1;
+    + 启动profile
+    + 这是一个session级的配置
++ 执行查询
++ show profiles;
+    + 查看每一个查询所消耗的总时间的信息
++ show profile for query N;
+    + 查询的每个阶段所消耗的时间
+
+#### 使用performance_schema
+``` sql
+UPDATE `setup_instruments` SET enabled='YES',TIMED='YES' WHERE NAME LIKE 'stage%';
+UPDATE `setup_consumers` SET enabled='YES' WHRER NAME LIKE 'events%';
+```
+
+### 7-7 特定SQL的查询优化
+
+#### 如何进行大表的数据修改
+>大表的数据修改最好要分批处理
+>
+>1000万行记录的表中删除/更新100万行记录
+>
+>一次只删除/更新5000行记录
+>
+>暂停几秒
+
+![大表的更新和删除](http://image.laihongji.com/7.png)
 
 
+#### 如何修改大表的结构
++ 对表中的列字段类型进行修改还是会锁表
++ 改变字段的宽度时还是会锁表
++ 无法解决主从数据库延迟的问题
+> 先修改从服务器，然后手动切换主从，在修改主服务器，再切回来，这种方法需要手动，有风险<br/><br/>
+主服务器建新表，将老表加触发器数据同步到新表，然后老表加排它锁，然后新表重新命名，删除老表
 
+#### 如何优化not in和<>查询
++ 需要优化的SQL
+```sql
+SELECT cutsomer_id,first_name,last_name,email FROM customer WHERE customer_id NOT IN(SELECT customer_id FROM payment)
+```
++ 优化后的SQL
+```sql
+SELECT a.customer_id,a.first_name,a.last_name,a.email FROM customer a LEFT JOIN payment b ON a.customer_id=b.customer_id WHERE b.customer_id IS NULL;
+```
+
+#### 使用汇总表优化查询
+```sql
+SELECT COUNT(*) FROM product_comment WHERE product_id=999
+```
+> 汇总表就是提前以要统计的数据进行汇总并记录到表中以备后续的查询使用
+
++ 优化后
+```sql
+CREATE TABLE product_comment_cnt(product_id INT,cnt INT);
+
+SELECT SUM(cnt) FROM(SELECT cnt FROM product_comment_cnt WHERE product_id=999 UNION ALL SELECT COUNT(*) FROM product_comment WHERE product_id=999 AND timestr>DATE(NOW())) a
+```
+
+    

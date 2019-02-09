@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e83f0ced-646a-4905-aa56-a3277c79c173" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/大表的更新和删除.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/打造扛得住的MySQL数据库架构.md" beforeDir="false" afterPath="$PROJECT_DIR$/打造扛得住的MySQL数据库架构.md" afterDir="false" />
     </list>
@@ -17,8 +18,8 @@
         <entry file="file://$PROJECT_DIR$/打造扛得住的MySQL数据库架构.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="315">
-                <caret line="1100" column="42" selection-start-line="1100" selection-start-column="42" selection-end-line="1100" selection-end-column="42" />
+              <first_editor relative-caret-position="403">
+                <caret line="1287" lean-forward="true" selection-start-line="1287" selection-end-line="1287" />
               </first_editor>
               <second_editor>
                 <markdownNavigatorState />
@@ -78,6 +79,11 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\phpcode\笔记" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -101,18 +107,27 @@
       <option name="presentableId" value="Default" />
       <updated>1549505806381</updated>
       <workItem from="1549505808032" duration="6466000" />
-      <workItem from="1549513323253" duration="10508000" />
+      <workItem from="1549513323253" duration="10587000" />
+      <workItem from="1549704995337" duration="7423000" />
     </task>
+    <task id="LOCAL-00001" summary="学习使我快乐">
+      <created>1549540593422</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1549540593422</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16974000" />
+    <option name="totallyTimeSpent" value="24476000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12556732" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12708019" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -136,12 +151,16 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="学习使我快乐" />
+    <option name="LAST_COMMIT_MESSAGE" value="学习使我快乐" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/打造扛得住的MySQL数据库架构.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="315">
-            <caret line="1100" column="42" selection-start-line="1100" selection-start-column="42" selection-end-line="1100" selection-end-column="42" />
+          <first_editor relative-caret-position="403">
+            <caret line="1287" lean-forward="true" selection-start-line="1287" selection-end-line="1287" />
           </first_editor>
           <second_editor>
             <markdownNavigatorState />
