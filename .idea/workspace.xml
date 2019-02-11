@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e83f0ced-646a-4905-aa56-a3277c79c173" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/大表的更新和删除.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/打造扛得住的MySQL数据库架构.md" beforeDir="false" afterPath="$PROJECT_DIR$/打造扛得住的MySQL数据库架构.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,8 +16,8 @@
         <entry file="file://$PROJECT_DIR$/打造扛得住的MySQL数据库架构.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="403">
-                <caret line="1287" lean-forward="true" selection-start-line="1287" selection-end-line="1287" />
+              <first_editor relative-caret-position="491">
+                <caret line="1324" column="17" lean-forward="true" selection-start-line="1324" selection-start-column="17" selection-end-line="1324" selection-end-column="17" />
               </first_editor>
               <second_editor>
                 <markdownNavigatorState />
@@ -58,6 +56,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -69,7 +68,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -109,6 +107,7 @@
       <workItem from="1549505808032" duration="6466000" />
       <workItem from="1549513323253" duration="10587000" />
       <workItem from="1549704995337" duration="7423000" />
+      <workItem from="1549886267791" duration="3106000" />
     </task>
     <task id="LOCAL-00001" summary="学习使我快乐">
       <created>1549540593422</created>
@@ -121,13 +120,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24476000" />
+    <option name="totallyTimeSpent" value="27582000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12708019" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12859304" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -159,8 +158,8 @@
     <entry file="file://$PROJECT_DIR$/打造扛得住的MySQL数据库架构.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="403">
-            <caret line="1287" lean-forward="true" selection-start-line="1287" selection-end-line="1287" />
+          <first_editor relative-caret-position="491">
+            <caret line="1324" column="17" lean-forward="true" selection-start-line="1324" selection-start-column="17" selection-end-line="1324" selection-end-column="17" />
           </first_editor>
           <second_editor>
             <markdownNavigatorState />
